@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Data;
+use App\Models\Users;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
     public function index()
     {
-        $users = Data::all();
+        $users = Users::all();
         return response()->json([
                 'message' => 'Menampilkan semua data',
                 'data' => $users
@@ -18,7 +18,7 @@ class UsersController extends Controller
 
     public function show($id)
     {
-        $user = Data::find($id);
+        $user = Users::find($id);
         if($user){
             return response()->json([
                 'message' => 'Data berhasil ditemukan',
@@ -33,7 +33,7 @@ class UsersController extends Controller
 
     public function store(Request $request)
     {
-        $user = Data::create([
+        $user = Users::create([
             'username' => $request->username,
             'password' => $request->password
         ]);
@@ -51,7 +51,7 @@ class UsersController extends Controller
 
     public function destroy($id)
     {
-        $user = Data::find($id);
+        $user = Users::find($id);
         if($user){
             $user->delete();
             return response()->json([
@@ -66,7 +66,7 @@ class UsersController extends Controller
 
     public function update(Request $request, $id)
     {
-        $user = Data::whereid($id)->update([
+        $user = Users::whereid($id)->update([
             'username' => $request->username,
             'password' => $request->password
         ]);
