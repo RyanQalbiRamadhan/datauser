@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Data;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $users = Data::all();
         return response()->json([
-                'message' => 'Menampilkan semua produk',
+                'message' => 'Menampilkan semua data',
                 'data' => $users
             ], 200);
     }
 
     public function show($id)
     {
-        $user = User::find($id);
+        $user = Data::find($id);
         if($user){
             return response()->json([
                 'message' => 'Data berhasil ditemukan',
@@ -33,11 +33,9 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $user = User::create([
-            'name' => $request->name,
-            'price' => $request->price,
-            'rating' => $request->rating,
-            'quantity' => $request->quantity
+        $user = Data::create([
+            'username' => $request->username,
+            'password' => $request->password
         ]);
         if($user){
             return response()->json([
@@ -53,7 +51,7 @@ class ProductController extends Controller
 
     public function destroy($id)
     {
-        $user = User::find($id);
+        $user = Data::find($id);
         if($user){
             $user->delete();
             return response()->json([
@@ -68,11 +66,9 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
-        $user = User::whereid($id)->update([
-            'name' => $request->name,
-            'price' => $request->price,
-            'rating' => $request->rating,
-            'quantity' => $request->quantity
+        $user = Data::whereid($id)->update([
+            'username' => $request->username,
+            'password' => $request->password
         ]);
         if($user){
             return response()->json([
