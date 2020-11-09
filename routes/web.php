@@ -18,16 +18,16 @@ $router->get('/', function () use ($router) {
 });
 
 // Menampilkan seluruh isi tabel
-$router->get('/users', 'UserController@index');
+$router->get('/users', 'UsersController@index');
 
 // Menampilkan data berdasarkan id dari tabel
-$router->get('/users/{id}', 'UserController@show');
+$router->get('/users/{id}', 'UsersController@show');
 
 // Menambahkan data baru ke dalam tabel
-$router->post('/users', 'UserController@store');
+$router->post('/users', 'UsersController@store');
 
 // Menghapus data berdasarkan id dari tabel
-$router->delete('/users/{id}', 'UserController@destroy');
+$router->delete('/users/{id}', 'UsersController@destroy');
 
 // Mengupdate data berdasarkan id dari tabel
-$router->put('/users/{id}', 'UserController@update');
+$router->put('/users/{id}', 'UsersController@update');
